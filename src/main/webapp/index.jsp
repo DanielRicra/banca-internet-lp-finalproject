@@ -13,20 +13,35 @@
         <title>Login</title>
     </head>
     <body>
-        <div class="contenedor flex-center">
+        <div class="contenedor flex-center f-column">
+            <h1 class="title">New Bank Peru</h1>
+            
             <div class="login flex-center">
-                <h1 class="title">Iniciar Sesión</h1>
+                <h2 class="subtitle">Iniciar Sesión</h2>
+                
                 <form 
+                    method="POST"
                     class="form form-login"
                 >
                     <div class="campo">
-                        <label for="dni"></label>
+                        <label for="dni">DNI</label>
                         <input 
                             id="dni"
                             name="dni"
                             type="text"
                         >
                     </div>
+                   
+                    <div class="campo">
+                        <label for="password">Contraseña</label>
+                        <input 
+                            id="password"
+                            name="password"
+                            type="password"
+                        >
+                    </div>
+                    
+                    <input  type="submit" value="Iniciar Sesión" class="boton">
                 </form>
             </div>
         </div>

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,300&display=swap');
 :root {
     --font-base: 'Nunito Sans', sans-serif;
+    --color-principal: rgb(67, 66, 93);
+    --color-secundario: rgb(40, 231, 239);
 }
 
 * {
@@ -12,11 +14,25 @@
 html {
     font-family: var(--font-base);
 }
+body {
+    background-color: var(--color-principal);
+    color: #FFFFFF;
+}
 /*================= Globales ================ */
+h1, h2 {
+  margin: 10px 0;  
+}
 a {
     text-decoration: none;
 }
+.f-column {
+    flex-direction: column;
+}
 .title {
+    font-weight: 800;
+    text-align: center;
+}
+.subtitle {
     font-weight: 600;
     text-align: center;
 }
@@ -28,4 +44,69 @@ a {
 }
 .contenedor {
     min-height: 100vh;
+}
+
+
+/*=======================Login==================*/
+.login {
+    flex-direction: column;
+    padding: 42px;
+    width: 100%;
+}
+
+.login h1{
+    font-size: 44px;
+    margin-bottom: 30px;
+}
+
+/*===========FORM==========*/
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form .campo {
+    display: flex;
+    flex-direction: column;
+}
+.form input {
+    padding: 5px;
+    line-height: 1.5;
+    border: none;
+    outline: none;
+    margin-bottom: 24px;
+}
+.form input[type="text"], 
+.form input[type="password"]{
+    background-color: transparent;
+    border-bottom: 2px solid rgb(216, 217, 224);
+    color: white;
+    line-height: 100%;
+    font-size: 16px;
+}
+.form input[type="password"]::-ms-reveal {
+    filter: invert(100%);
+}
+.form input[type="submit"] {
+    margin-top: 20px;
+    margin-bottom: 0;
+    line-height: 1.4;
+    padding: 12px;
+}
+
+/*========Bototnes============================*/
+
+.boton {
+    background-color: var(--color-secundario);
+    font-family: var(--font-base);
+    line-height: 1.4;
+    padding: 12px;
+    color: var(--color-principal);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 8px;
 }
