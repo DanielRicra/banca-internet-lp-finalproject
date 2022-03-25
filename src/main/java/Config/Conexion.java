@@ -8,34 +8,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Conexion {
-    private Connection con;
+    
     private final String JDBC_URL = "jdbc:mysql://localhost:3306/bancainternet?useSSL=false&useTimezone=true&serverTimezone=UTC";
     private final String JDBC_USER = "root";
     private final String JDBC_PASSWORD = "";
     
-    
-    public Conexion() {        
-        try {
-            con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-            System.out.println("Inside DB");
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
-    
-    public void close() {
-        if (this.con != null) {
-            try {
-                this.con.close();
-            } catch (SQLException ex) {
-                System.out.println("Default close: " + ex.getStackTrace());
-            }
-        }
-    }
-    
     public Connection getConnection() {
-        return con;
-    }    
+        Connection connection = null;
+        
+        try {
+            connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+        } catch (SQLException e) {
+            System.out.println("Error conecction");
+            System.out.println(e.getStackTrace());
+        }
+        return connection;
+    }   
     
     public void close(ResultSet rs) {
         try {
@@ -53,11 +41,12 @@ public class Conexion {
         }
     }
     
-    public void close(Connection conn) {
+    public void close(Connection connection) {
         try {
-            conn.close();
+            connection.close();
         } catch (SQLException e) {
             System.out.println("close connection " + e.getStackTrace());
         }
     }
+    
 }
