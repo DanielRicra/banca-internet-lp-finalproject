@@ -23,6 +23,16 @@ public class Conexion {
         }
     }
     
+    public void close() {
+        if (this.con != null) {
+            try {
+                this.con.close();
+            } catch (SQLException ex) {
+                System.out.println("Default close: " + ex.getStackTrace());
+            }
+        }
+    }
+    
     public Connection getConnection() {
         return con;
     }    
