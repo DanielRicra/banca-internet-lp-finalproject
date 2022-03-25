@@ -9,5 +9,5 @@ public interface CrudCuenta {
     public Cuenta getCuenta(String numeroCuenta);
     public boolean modificar(Cuenta cuenta);
     public boolean save(Cuenta cuenta);
-    public boolean delete(String numeroCuenta);
+    public boolean eliminar(String numeroCuenta);
 }
