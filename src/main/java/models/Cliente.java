@@ -8,6 +8,17 @@ public class Cliente {
     private String password;
     private String dni;
     private String telefono;
+
+    public Cliente() {
+    }
+
+    public Cliente(String nombre, String direccion, String password, String dni, String telefono) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.password = password;
+        this.dni = dni;
+        this.telefono = telefono;
+    }
     
     public Integer getId() {
         return id;
@@ -56,5 +67,16 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + 
+                ", nombre=" + nombre + 
+                ", direccion=" + direccion + 
+                ", password=" + password + 
+                ", dni=" + dni + 
+                ", telefono=" + telefono + 
+            '}';
+    }
+  
 }

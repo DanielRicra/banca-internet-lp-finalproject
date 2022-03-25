@@ -50,5 +50,15 @@ public class Operacion {
     public void setNumeroCuenta(String numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
+
+    @Override
+    public String toString() {
+        return "Operacion{" + "id=" + id + 
+            ", tipo=" + tipo + ", monto=" + monto + 
+            ", fecha=" + fecha + 
+            ", numeroCuenta=" + numeroCuenta + 
+            '}';
+    }
+    
     
 }

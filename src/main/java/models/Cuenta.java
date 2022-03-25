@@ -30,5 +30,13 @@ public class Cuenta {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
+
+    @Override
+    public String toString() {
+        return "Cuenta{" + "numeroCuenta=" + numeroCuenta + 
+            ", monto=" + monto + 
+            ", idCliente=" + idCliente + 
+            '}';
+    }
   
 }

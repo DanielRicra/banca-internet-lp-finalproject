@@ -14,7 +14,7 @@ import models.Cliente;
 public class ClienteDAO implements CrudCliente{
 
     private Connection connection = null;
-    private Conexion conexion;
+    private Conexion conexion = new Conexion();
     private ResultSet rs = null;
     private PreparedStatement ps = null;
     private Cliente cliente;    
