@@ -4,7 +4,7 @@ package models;
 public class Cuenta {
     
     private String numeroCuenta;
-    private double monto;
+    private double saldo;
     private int idCliente;
 
     public String getNumeroCuenta() {
@@ -15,12 +15,12 @@ public class Cuenta {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public double getMonto() {
-        return monto;
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setMonto(double monto) {
-        this.monto = monto;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 
     public int getIdCliente() {
@@ -34,7 +34,7 @@ public class Cuenta {
     @Override
     public String toString() {
         return "Cuenta{" + "numeroCuenta=" + numeroCuenta + 
-            ", monto=" + monto + 
+            ", saldo=" + saldo + 
             ", idCliente=" + idCliente + 
             '}';
     }
