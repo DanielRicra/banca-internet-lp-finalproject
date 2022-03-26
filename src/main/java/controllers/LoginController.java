@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelodao.ClienteDAO;
+import models.Cliente;
 
 /**
  *
@@ -16,6 +19,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
+    
+    private final String INICIO = "vistas/home.jsp";
+    private final String LOGIN = "index.jsp";
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
@@ -29,8 +36,11 @@ public class LoginController extends HttpServlet {
         String accion = "";
         String action = request.getParameter("accion");
         
+        System.out.println("Action: " + action);
         if (action.equalsIgnoreCase("listar")) {
             accion = "vistas/listar.jsp";
+        } else {
+            accion = INICIO;
         }
         
         RequestDispatcher vista = request.getRequestDispatcher(accion);
@@ -41,7 +51,38 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String accion = "";
+        String action = request.getParameter("accion");
+        
+        if ("login".equalsIgnoreCase(action)) {
+            if (iniciarSesion(request, response)) {
+                return;
+            }
+        } else {
+            accion = LOGIN;
+        }
+        
+        System.out.println("No paso login");
+        request.setAttribute("error", "DNI o password incorrectos");
+        request.getRequestDispatcher(accion).forward(request, response);
+    }
+
+    private boolean iniciarSesion(HttpServletRequest req, HttpServletResponse res) 
+        throws ServletException, IOException {
+        
+        String dni = req.getParameter("dni");
+        String password = req.getParameter("password");
+        
+        ClienteDAO clienteDAO = new ClienteDAO();
+        Cliente cliente = clienteDAO.getClienteByDNI(dni);
+        if (cliente.getDni()!= null && cliente.getPassword().equals(password)){
+            HttpSession session = req.getSession(true);
+            session.setAttribute("cliente", cliente);
+            req.getRequestDispatcher(INICIO).forward(req, res);
+            return true;
+        } 
+        return false;
     }
 
 }
