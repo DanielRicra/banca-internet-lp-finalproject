@@ -20,7 +20,8 @@ public class ClienteDAO implements CrudCliente{
     private Cliente cliente;    
     
     private final String SQL_GET_ALL = "SELECT * FROM clientes"; 
-    private final String SQL_GET_BY_ID = "SELECT * FROM clientes where id=?";
+    private final String SQL_GET_BY_ID = "SELECT * FROM clientes WHERE id=?";
+    private final String SQL_GET_BY_DNI = "SELECT * FROM clientes WHERE dni=?";
     private final String SQL_INSERT = "INSERT INTO clientes (nombre, direccion, password," +
         "dni, telefono) VALUES (?, ?, ?, ?, ?)";
     private final String SQL_UPDATE = "UPDATE clientes SET nombre=?, direccion=?, password=?," + 
@@ -170,5 +171,36 @@ public class ClienteDAO implements CrudCliente{
         }
         
         return respuesta;
+    }
+
+    @Override
+    public Cliente getClienteByDNI(String dni) {
+         cliente = new Cliente();
+        try {
+            connection = conexion.getConnection();
+            ps = connection.prepareStatement(SQL_GET_BY_DNI);
+            ps.setString(1, dni);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                cliente.setId(rs.getInt("id"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setPassword(rs.getString("password"));
+                cliente.setDni(rs.getString("dni"));
+                cliente.setTelefono(rs.getString("telefono"));
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Get Cliente by DNI: " + e.getStackTrace());
+        } finally {
+            if (connection != null) {
+                conexion.close(ps);
+                conexion.close(rs);
+                conexion.close(connection);
+            }
+        }
+        
+        return cliente;
     }
 }
