@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import modelodao.ClienteDAO;
 import modelodao.CuentaDAO;
+import modelodao.OperacionDAO;
 import models.Cliente;
 import models.Cuenta;
+import models.Operacion;
 
 public class Test {
     
     public static void main(String[] args) {
-        
+        // === Test Cliente ===
         ClienteDAO clienteDAO = new ClienteDAO();
         
         System.out.println("Get Cliente por ID ");
@@ -39,7 +41,7 @@ public class Test {
         List<Cliente> clientes = clienteDAO.getAll();
         clientes.forEach(System.out::println);
         
-        // Test Cuenta
+        // === Test Cuenta ===
         CuentaDAO cuentaDAO = new CuentaDAO();
         
         System.out.println("Obetner Cuenta by numero de cuenta");
@@ -62,11 +64,28 @@ public class Test {
         boolean saveCuenta = cuentaDAO.save(nuevaCuenta);
         System.out.println("Se guardo la cuenta? " + saveCuenta);
          */
+        /*
         boolean seEliminoLaCuenta = cuentaDAO.eliminar("9876543217415");
         System.out.println("Se elimino la cuenta 9876543217415? " + seEliminoLaCuenta);
-        
+        */
         System.out.println("Todas las cuentas");
         List<Cuenta> cuentas = cuentaDAO.getAll();
         cuentas.forEach(System.out::println);
+        
+        
+        // === Test Operacion ===
+        
+        OperacionDAO operacionDAO = new OperacionDAO();
+        
+        System.out.println("Obetner Operacion by Id");
+        Operacion operacion = operacionDAO.getOperacion(1);
+        System.out.println("Operacion: " + operacion);
+        /*
+        boolean saveOperacion = operacionDAO
+            .save(new Operacion('D', new BigDecimal("100.00"), null, "2011234789546"));
+        System.out.println("Se guardo la operacion? " + saveOperacion);
+        */
+        System.out.println("10 ultimas operaciones por numero de cuenta");
+        operacionDAO.getByNumeroCuenta("2011234789546").forEach(System.out::println);
     }
 }
