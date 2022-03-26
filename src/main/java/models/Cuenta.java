@@ -1,10 +1,12 @@
 
 package models;
 
+import java.math.BigDecimal;
+
 public class Cuenta {
     
     private String numeroCuenta;
-    private double saldo;
+    private BigDecimal saldo;
     private int idCliente;
 
     public String getNumeroCuenta() {
@@ -15,11 +17,11 @@ public class Cuenta {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public double getSaldo() {
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
     }
 
