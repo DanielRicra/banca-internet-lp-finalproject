@@ -17,10 +17,10 @@ public class Conexion {
         Connection connection = null;
         
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-        } catch (SQLException e) {
-            System.out.println("Error conecction");
-            System.out.println(e.getStackTrace());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error connection " + e.getMessage());
         }
         return connection;
     }   
