@@ -1,15 +1,26 @@
 
 package models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Operacion {
     
     private int id;
     private char tipo;
-    private double monto;
+    private BigDecimal monto;
     private LocalDateTime fecha;
     private String numeroCuenta;
+
+    public Operacion() {
+    }
+
+    public Operacion(char tipo, BigDecimal monto, LocalDateTime fecha, String numeroCuenta) {
+        this.tipo = tipo;
+        this.monto = monto;
+        this.fecha = fecha;
+        this.numeroCuenta = numeroCuenta;
+    }
 
     public int getId() {
         return id;
@@ -27,11 +38,11 @@ public class Operacion {
         this.tipo = tipo;
     }
 
-    public double getMonto() {
+    public BigDecimal getMonto() {
         return monto;
     }
 
-    public void setMonto(double monto) {
+    public void setMonto(BigDecimal monto) {
         this.monto = monto;
     }
 
