@@ -21,15 +21,16 @@ public class Main {
         boolean modificar = clienteDAO.modificar(cliente5);
         System.out.println("Modificado: " + modificar);
         */
-        
+        /*
         Cliente nuevoCliente = new Cliente("Nuevo", "Av. Test", "test", "12345670", "123456741");
         System.out.println("Agregar nuevo cliente: ");
         boolean save = clienteDAO.save(nuevoCliente);
         System.out.println("Se guardo ? " + save);
-        
+        */
+        /*
         boolean eliminar = clienteDAO.eliminar(7);
         System.out.println("Se elimino? " + eliminar);
-        
+        */
         System.out.println("Todos los clientes: ");
         List<Cliente> clientes = clienteDAO.getAll();
         clientes.forEach(System.out::println);

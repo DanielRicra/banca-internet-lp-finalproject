@@ -161,7 +161,7 @@ public class ClienteDAO implements CrudCliente{
             respuesta = ps.executeUpdate() == 1;
             
         } catch (SQLException e) {
-             System.out.println("delete cleinte: " + e.getStackTrace());
+             System.out.println("Delete cliente: " + e.getStackTrace());
         } finally {
             if (connection != null) {
                 conexion.close(connection);
