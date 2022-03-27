@@ -37,10 +37,10 @@ public class LoginController extends HttpServlet {
         String action = request.getParameter("accion");
         
         System.out.println("Action: " + action);
-        if (action.equalsIgnoreCase("listar")) {
+        if ("listar".equalsIgnoreCase(action)) {
             accion = "vistas/listar.jsp";
         } else {
-            accion = INICIO;
+            accion = LOGIN;
         }
         
         RequestDispatcher vista = request.getRequestDispatcher(accion);
@@ -63,7 +63,6 @@ public class LoginController extends HttpServlet {
             accion = LOGIN;
         }
         
-        System.out.println("No paso login");
         request.setAttribute("error", "DNI o password incorrectos");
         request.getRequestDispatcher(accion).forward(request, response);
     }
