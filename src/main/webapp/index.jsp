@@ -10,16 +10,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/estilos.css"/>
+        <link rel="icon" href="images/create-contact.png">
         <title>Login</title>
     </head>
     <body>
         <div class="contenedor flex-center f-column">
-            <h1 class="title">New Bank Peru</h1>
+            <h1 class="title">New Perú Bank</h1>
             
             <div class="login flex-center">
                 <h2 class="subtitle">Iniciar Sesión</h2>
                 
                 <form 
+                    action="LoginController?accion=login"
                     method="POST"
                     class="form form-login"
                 >

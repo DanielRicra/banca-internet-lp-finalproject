@@ -45,6 +45,11 @@ a {
 .contenedor {
     min-height: 100vh;
 }
+.flex-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 
 
 /*=======================Login==================*/
@@ -82,12 +87,19 @@ a {
     margin-bottom: 24px;
 }
 .form input[type="text"], 
-.form input[type="password"]{
+.form input[type="password"],
+.form input[type="number"]{
     background-color: transparent;
     border-bottom: 2px solid rgb(216, 217, 224);
     color: white;
     line-height: 100%;
     font-size: 16px;
+}
+.form input[type="number"] {
+    text-align: right;
+}
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 .form input[type="password"]::-ms-reveal {
     filter: invert(100%);
@@ -116,4 +128,85 @@ a {
 
 .boton:hover {
     background-color: rgb(34, 185, 191);
+}
+
+/*===========home============================*/
+
+.home {
+    display:flex;
+    max-width: 960px;
+    width: 100%;
+    padding: 50px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.home h1{
+    margin-bottom: 30px;
+    font-size: 42px;
+    width: 100%;
+}
+
+.home h2 {
+    font-size: 24px;
+    font-weight: 400;
+}
+.home h2 .cliente {
+    color: #E6E6F5;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.contenedor-home {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.home__subtitle {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.home__menu {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    border-bottom: 2px solid var(--color-secundario);
+}
+.home__menu li {
+    padding: 8px 16px;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    font-weight: 700;
+}
+
+.home__menu a {
+    color: inherit;
+}
+.home__menu li.active {
+    background-color: transparent;
+    border: 2px solid var(--color-secundario);
+    color: #F8F8F8;
+    margin-bottom: -2px;
+    border-bottom: 2px solid var(--color-principal);
+}
+
+/*=========== Oeraciones==============*/
+.operaciones {
+    width: 100%;
+    padding: 30px;
+}
+
+/*============deposito================*/
+
+.deposito .form {
+    margin-top: 30px;
 }
