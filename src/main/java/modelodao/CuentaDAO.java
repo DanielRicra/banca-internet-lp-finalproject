@@ -22,6 +22,7 @@ public class CuentaDAO implements CrudCuenta{
     
     private final String SQL_GET_ALL = "SELECT * FROM cuentas";
     private final String SQL_GET_BY_ID = "SELECT * FROM cuentas WHERE numero_cuenta=?";
+    private final String SQL_GET_BY_CLIENTE_ID = "SELECT * FROM cuentas WHERE id_cliente=?";
     private final String SQL_UPDATE_SALDO = "UPDATE cuentas SET saldo=? WHERE numero_cuenta=?";
     private final String SQL_DELETE = "DELETE FROM cuentas WHERE numero_cuenta=?";
     private final String SQL_INSERT = "INSERT INTO cuentas (numero_cuenta, saldo, id_cliente) "+
@@ -150,6 +151,32 @@ public class CuentaDAO implements CrudCuenta{
             }
         }
         return respuesta;
+    }
+
+    @Override
+    public Cuenta getCuentaByIdCliente(int idCliente) {
+        cuenta = new Cuenta();
+        try {
+            connection = conexion.getConnection();
+            ps = connection.prepareStatement(SQL_GET_BY_CLIENTE_ID);
+            ps.setInt(1, idCliente);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                cuenta.setNumeroCuenta(rs.getString("numero_cuenta"));
+                cuenta.setSaldo(rs.getBigDecimal("saldo"));
+                cuenta.setIdCliente(rs.getInt("id_cliente"));
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("GET Cuenta bu clienteId: " + e.getStackTrace());
+        } finally {
+            if (connection != null) {
+                conexion.close(connection);
+            }
+        }
+        
+        return cuenta;
     }
     
 }
