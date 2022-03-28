@@ -93,7 +93,7 @@ public class CuentaDAO implements CrudCuenta{
         try {
             connection = conexion.getConnection();
             ps = connection.prepareStatement(SQL_UPDATE_SALDO);
-            ps.setBigDecimal(1, cuenta.getSaldo());
+            ps.setBigDecimal(1, saldo);
             ps.setString(2, cuenta.getNumeroCuenta());
             
             respuesta = ps.executeUpdate() == 1;
