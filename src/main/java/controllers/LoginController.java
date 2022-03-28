@@ -80,7 +80,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("cliente", cliente);
             req.getRequestDispatcher(INICIO).forward(req, res);
             return true;
-        } 
+        }
         return false;
     }
 
