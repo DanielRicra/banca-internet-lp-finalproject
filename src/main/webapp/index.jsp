@@ -12,14 +12,26 @@
         <link rel="stylesheet" href="css/estilos.css"/>
         <link rel="icon" href="images/create-contact.png">
         <title>Login</title>
-    </head>
+    </head> 
     <body>
         <div class="contenedor flex-center f-column">
             <h1 class="title">New Perú Bank</h1>
             
             <div class="login flex-center">
                 <h2 class="subtitle">Iniciar Sesión</h2>
-                
+                <div>
+                  <%
+                    Object msj = request.getAttribute("mensaje");
+                    if (msj != null) {
+                  %>
+                    <p 
+                      id="mensaje" 
+                      class="mensaje <%=msj.toString().contains("Error")? "error":"exito" %>"
+                    >
+                      <%=msj.toString()%>
+                    </p>
+                  <% } %>
+                </div>
                 <form 
                     action="LoginController?accion=login"
                     method="POST"

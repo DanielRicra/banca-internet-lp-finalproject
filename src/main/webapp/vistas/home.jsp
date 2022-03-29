@@ -4,6 +4,7 @@
     Author     : Daniel_pc
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.List"%>
 <%@page import="models.Operacion"%>
 <%@page import="modelodao.OperacionDAO"%>
@@ -46,7 +47,18 @@
             <a href="LoginController?accion=salir">Salir</a>
           </li>
         </ul>
-        <div class="operaciones flex-center">
+        <div class="operaciones flex-center f-column">
+          <div>
+            <%
+              Object msj = request.getAttribute("mensaje");
+              if (msj != null) {
+            %>
+              <p id="mensaje" class="mensaje <%=msj.toString().contains("Error")? "error":"exito" %>">
+                <%=msj.toString()%>
+              </p>
+            <% } %>
+          </div>
+          
           <div class="operacion" id="deposito">
             <h3>Deposito</h3>
             <form 
@@ -60,7 +72,8 @@
                   id="monto"
                   name="monto"
                   type="number"
-                  >
+                  step="any"
+                >
               </div>
 
               <input 
@@ -86,7 +99,8 @@
                   id="monto"
                   name="monto"
                   type="number"
-                  >
+                  step="any"
+                >
               </div>
 
               <input 
@@ -126,7 +140,12 @@
                   %>
                   <tr>
                     <td><%=operacion.getTipo()=='R'? "Retiro":"Desposito" %></td>
-                    <td><%=operacion.getFecha()%></td>
+                    <td>
+                      <%=
+                        operacion.getFecha()
+                          .format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))
+                      %>
+                    </td>
                     <td 
                       class="mov-monto <%=operacion.getTipo()=='R'?"rojo":"verde"%>"
                     >
@@ -149,6 +168,7 @@
 
       botones.forEach(boton => boton.addEventListener('click', (e) => {
           borrarBotonesActivos();
+          const borrarMensajes = setTimeout(borrarMsj, 3000);
           if (e.target.tagName === 'LI') {
             e.target.classList.add('active');
           } else if (e.target.tagName === 'P') {
@@ -180,6 +200,14 @@
           retiro.classList.remove('show');
         }
       };
+      
+      
+      function borrarMsj() {
+        const mensaje = document.querySelector('#mensaje');
+        if (mensaje) {
+          setTimeout(mensaje.remove(), 2300);
+        }
+      }
     </script>
   </body>
 </html>

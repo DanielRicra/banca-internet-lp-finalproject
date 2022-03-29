@@ -204,6 +204,24 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 100%;
   padding: 30px;
 }
+.operaciones .mensajes {
+  padding: 10px 20px;
+}
+.mensaje {
+  background-color: #43425d;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 20px;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, .2);
+  margin-bottom: 8px;
+}
+
+.mensaje.error {
+  color: #FF5e5e;
+}
+.mensaje.exito {
+  color: #23FF22;
+}
 
 /*============deposito================*/
 
@@ -226,6 +244,7 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: 600;
 }
 
+
 /*============deposito table================*/
 .operacion table .mov-monto{
   text-align: right;
@@ -234,15 +253,18 @@ table {
   border-collapse: collapse;
 }
 table .rojo {
-  color: #FF3434;
+  color: #FF5e5e;
 }
 table .verde {
   color: #23FF22;
 }
 thead {
-  background-color: #949495;
+  background-color: #747475;
 }
 table td,
 table th {
   padding: 10px 20px;
+}
+table td {
+  border-bottom: 1px solid #747475;
 }
