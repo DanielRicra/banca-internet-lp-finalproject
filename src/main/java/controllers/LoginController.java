@@ -59,6 +59,11 @@ public class LoginController extends HttpServlet {
             if (iniciarSesion(request, response)) {
                 return;
             }
+            request.setAttribute("mensaje", "Error: DNI o contraseña incorrecta!");
+        } else if ("salir".equals(action)) {
+            HttpSession session = request.getSession(true);
+            session.setAttribute("cliente", new Cliente());
+            accion = LOGIN;
         } else {
             accion = LOGIN;
         }
@@ -80,7 +85,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("cliente", cliente);
             req.getRequestDispatcher(INICIO).forward(req, res);
             return true;
-        }
+        } 
         return false;
     }
 

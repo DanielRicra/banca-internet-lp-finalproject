@@ -56,6 +56,13 @@ public class HomeController extends HttpServlet {
                 return;
             } 
             mensajes = "Error al depositar";
+        } else if ("retiro".equals(action)) {
+            if (retiro(request, response)) {
+                request.setAttribute("mensaje", "Retiro exitoso");
+                request.getRequestDispatcher(INICIO).forward(request, response);
+                return;
+            }
+            mensajes = "Error o saldo insuficiente";
         }
         
         request.setAttribute("mensaje", mensajes);
@@ -66,7 +73,8 @@ public class HomeController extends HttpServlet {
         String dni = req.getParameter("dni");
         BigDecimal monto = new BigDecimal(req.getParameter("monto"));
         boolean isSave = false;
-         boolean isUpdate = false;
+        boolean isUpdate = false;
+        
         if (monto.compareTo(BigDecimal.ZERO) == 1) {
             ClienteDAO clienteDAO = new ClienteDAO();
             Cliente cliente = clienteDAO.getClienteByDNI(dni);
@@ -77,11 +85,35 @@ public class HomeController extends HttpServlet {
             isSave = operacionDAO.save(operacion);
             if (isSave){
                 isUpdate = cuentaDAO.modificarSaldo(cuenta.getNumeroCuenta(), 
-                                                            cuenta.getSaldo().add(monto));
+                                                    cuenta.getSaldo().add(monto));
             }
             return isSave && isUpdate;
         }
         
         return false;
     }  
+
+    private boolean retiro(HttpServletRequest req, HttpServletResponse res) {
+        String dni = req.getParameter("dni");
+        BigDecimal monto = new BigDecimal(req.getParameter("monto"));
+        
+        ClienteDAO clienteDAO = new ClienteDAO();
+        Cliente cliente = clienteDAO.getClienteByDNI(dni);
+        
+        CuentaDAO cuentaDAO =  new CuentaDAO();
+        Cuenta cuenta = cuentaDAO.getCuentaByIdCliente(cliente.getId());
+        
+        boolean isSave = false;
+        boolean isUpdate = false;
+        if (cuenta.getSaldo().compareTo(monto) != -1) {
+            OperacionDAO operacionDAO = new OperacionDAO();
+            Operacion operacion = new Operacion('R', monto, null, cuenta.getNumeroCuenta());
+            isSave = operacionDAO.save(operacion);
+            if (isSave) {
+               return cuentaDAO.modificarSaldo(cuenta.getNumeroCuenta(), 
+                                                   cuenta.getSaldo().subtract(monto));
+            } 
+        } 
+        return false;
+    }
 }
