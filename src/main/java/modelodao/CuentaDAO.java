@@ -29,7 +29,7 @@ public class CuentaDAO implements CrudCuenta{
         " VALUES (?, ?, ?)";
         
     @Override
-    public List<Cuenta> getAll() {
+    public List<Cuenta> getCuentas() {
         List<Cuenta> cuentas = new ArrayList<>();
         
         try {
@@ -110,7 +110,7 @@ public class CuentaDAO implements CrudCuenta{
     }
 
     @Override
-    public boolean save(Cuenta cuenta) {
+    public boolean agregar(Cuenta cuenta) {
         boolean respuesta = false;
         try {
             connection = conexion.getConnection();

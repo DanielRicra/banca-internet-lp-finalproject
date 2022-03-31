@@ -99,7 +99,7 @@ public class OperacionDAO implements CrudOperacion{
     }
 
     @Override
-    public boolean save(Operacion operacion) {
+    public boolean agregar(Operacion operacion) {
         boolean respuesta = false;
         
         try {

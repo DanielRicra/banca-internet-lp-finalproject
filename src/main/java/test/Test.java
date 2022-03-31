@@ -30,7 +30,7 @@ public class Test {
         /*
         Cliente nuevoCliente = new Cliente("Nuevo", "Av. Test", "test", "12345670", "123456741");
         System.out.println("Agregar nuevo cliente ");
-        boolean save = clienteDAO.save(nuevoCliente);
+        boolean save = clienteDAO.agregar(nuevoCliente);
         System.out.println("Se guardo ? " + save);
         */
         /*
@@ -38,7 +38,7 @@ public class Test {
         System.out.println("Se elimino? " + eliminar);
         */
         System.out.println("Todos los clientes");
-        List<Cliente> clientes = clienteDAO.getAll();
+        List<Cliente> clientes = clienteDAO.getClientes();
         clientes.forEach(System.out::println);
         
         // === Test Cuenta ===
@@ -61,7 +61,7 @@ public class Test {
         nuevaCuenta.setIdCliente(1);
         nuevaCuenta.setNumeroCuenta("9876543217415");
         nuevaCuenta.setSaldo(BigDecimal.ZERO);
-        boolean saveCuenta = cuentaDAO.save(nuevaCuenta);
+        boolean saveCuenta = cuentaDAO.agregar(nuevaCuenta);
         System.out.println("Se guardo la cuenta? " + saveCuenta);
          */
         /*
@@ -69,7 +69,7 @@ public class Test {
         System.out.println("Se elimino la cuenta 9876543217415? " + seEliminoLaCuenta);
         */
         System.out.println("Todas las cuentas");
-        List<Cuenta> cuentas = cuentaDAO.getAll();
+        List<Cuenta> cuentas = cuentaDAO.getCuentas();
         cuentas.forEach(System.out::println);
         
         

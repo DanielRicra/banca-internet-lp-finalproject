@@ -29,7 +29,7 @@ public class ClienteDAO implements CrudCliente{
     private final String SQL_DELETE = "DELETE FROM clientes WHERE id=?";
     
     @Override
-    public List<Cliente> getAll() {
+    public List<Cliente> getClientes() {
         List<Cliente> clientes = new ArrayList<>();
         
         try {
@@ -123,7 +123,7 @@ public class ClienteDAO implements CrudCliente{
     }
 
     @Override
-    public boolean save(Cliente cliente) {
+    public boolean agregar(Cliente cliente) {
         boolean respuesta = false;
         
         try {

@@ -2,7 +2,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,19 +20,7 @@ public class HomeController extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet HomeController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet HomeController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     @Override
@@ -82,7 +69,7 @@ public class HomeController extends HttpServlet {
             Cuenta cuenta = cuentaDAO.getCuentaByIdCliente(cliente.getId());
             OperacionDAO operacionDAO = new OperacionDAO();
             Operacion operacion = new Operacion('D', monto, null, cuenta.getNumeroCuenta());
-            isSave = operacionDAO.save(operacion);
+            isSave = operacionDAO.agregar(operacion);
             if (isSave){
                 isUpdate = cuentaDAO.modificarSaldo(cuenta.getNumeroCuenta(), 
                                                     cuenta.getSaldo().add(monto));
@@ -108,7 +95,7 @@ public class HomeController extends HttpServlet {
         if (cuenta.getSaldo().compareTo(monto) != -1) {
             OperacionDAO operacionDAO = new OperacionDAO();
             Operacion operacion = new Operacion('R', monto, null, cuenta.getNumeroCuenta());
-            isSave = operacionDAO.save(operacion);
+            isSave = operacionDAO.agregar(operacion);
             if (isSave) {
                return cuentaDAO.modificarSaldo(cuenta.getNumeroCuenta(), 
                                                    cuenta.getSaldo().subtract(monto));
